@@ -7,6 +7,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/theghostmac/todo-api-with-gin/internal/models"
 	"github.com/theghostmac/todo-api-with-gin/internal/repository"
+
+	_ "github.com/lib/pq"
 )
 
 type TodoHandler struct {
@@ -14,8 +16,7 @@ type TodoHandler struct {
 }
 
 // NewTodoHandler creates a new TodoHandler with the given TodoRepository.
-// NewTodoHandler creates a new TodoHandler with the given TodoRepository.
-func NewTodoHandler(todoRepo *repository.PostgresTodoRepository) *TodoHandler {
+func NewTodoHandler(todoRepo repository.TodoRepository) *TodoHandler {
     return &TodoHandler{TodoRepository: todoRepo}
 }
 

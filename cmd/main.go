@@ -28,7 +28,7 @@ func main() {
 	router := gin.Default()
 
 	// Instantiate dependencies
-	todoRepository := repository.NewPostgresTodoRepository(db)
+	todoRepository := repository.NewTodoRepository(db)
 	todoHandler := handlers.NewTodoHandler(todoRepository)
 
 	// Register routes

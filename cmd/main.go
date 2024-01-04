@@ -11,7 +11,7 @@ import (
 )
 
 func main() {
-	// Database connection setup
+	// Database connection setup.
 	connStr := "user=youruser password=yourpassword dbname=yourdbname sslmode=disable"
 	db, err := sql.Open("postgres", connStr)
 	if err != nil {
@@ -19,7 +19,7 @@ func main() {
 	}
 	defer db.Close()
 
-	// Test database connection
+	// Test database connection.
 	err = db.Ping()
 	if err != nil {
 		log.Fatalf("Failed to ping database: %v", err)
@@ -27,17 +27,17 @@ func main() {
 
 	router := gin.Default()
 
-	// Instantiate dependencies
+	// Instantiate dependencies.
 	todoRepository := repository.NewTodoRepository(db)
 	todoHandler := handlers.NewTodoHandler(todoRepository)
 
-	// Register routes
+	// Register routes.
 	router.GET("/todos", todoHandler.GetAllTodos)
 	router.GET("/todos/:id", todoHandler.GetTodoByID)
 	router.POST("/todos", todoHandler.CreateTodo)
 	router.PUT("/todos/:id", todoHandler.UpdateTodo)
 	router.DELETE("/todos/:id", todoHandler.DeleteTodo)
 
-	// Start the server
+	// Start the server.
 	router.Run()
 }
